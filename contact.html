@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Contact Excel Salon for appointments, directions, and hours.">
+  <title>Excel Salon | Contact Us</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Global header injected by scripts.js -->
+  <div data-global-header></div>
+
+  <main>
+    <section class="hero">
+      <div class="hero-media" style="background-image:url('img/mens-22.jpg');"></div>
+      <div class="container hero-copy reveal">
+        <span class="hero-eyebrow">Connect With Us</span>
+        <h1 class="hero-title">CONNECT WITH US.</h1>
+        <p>Book in, ask a question, or reach us directly. The fastest route is WhatsApp, but the form is here for longer appointment requests and service notes.</p>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="container">
+        <p class="section-kicker">The Map</p>
+        <h2 class="section-title">Find the salon.</h2>
+        <iframe
+          class="map-frame"
+          title="Excel Salon location map"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Amsterdam&output=embed">
+        </iframe>
+      </div>
+    </section>
+
+    <section class="section compact reveal">
+      <div class="container contact-grid">
+        <div class="panel copy-block">
+          <p class="section-kicker">Contact Form</p>
+          <h2 class="section-title">Send the details, we will handle the rest.</h2>
+          <p>This static form is ready to connect to Formspree, Netlify Forms, or another free handler of your choice.</p>
+          <form class="form-grid" action="#" method="post" style="margin-top:1.2rem;">
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your name">
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" placeholder="Your phone number">
+            </div>
+            <div class="field">
+              <label for="service">Service</label>
+              <select id="service" name="service">
+                <option>Executive Cut</option>
+                <option>Classic Shave</option>
+                <option>Beard Sculpt</option>
+                <option>Styles & Pricing Consultation</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us what you want booked."></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit Request</button>
+          </form>
+        </div>
+
+        <div class="info-stack">
+          <article class="info-card">
+            <h4>Direct Contact</h4>
+            <p>Phone: +31651080577</p>
+            <p>Email: hello@excelsalon.com</p>
+            <p>Address: By appointment, premium grooming location.</p>
+          </article>
+          <article class="info-card">
+            <h4>Business Hours</h4>
+            <table class="hours-table">
+              <tr><th>Mon-Sat</th><td>9AM - 8PM</td></tr>
+              <tr><th>Sunday</th><td>Closed</td></tr>
+            </table>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global footer injected by scripts.js -->
+  <div data-global-footer></div>
+  <script src="scripts.js" defer></script>
+</body>
+</html>
