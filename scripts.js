@@ -2,8 +2,123 @@
   const cacheBust = '20260419';
   const headerPath = 'global-header.html';
   const footerPath = 'global-footer.html';
+  const sourceLanguage = 'en';
+  const translationHostId = 'google_translate_element';
+  const translationScriptId = 'google-translate-script';
+  const rtlLanguages = new Set(['ar', 'fa', 'he', 'ur']);
+
+  const translationLanguages = [
+    'af', 'ar', 'az', 'bg', 'bn', 'bs', 'ca', 'cs', 'da', 'de', 'el', 'en', 'es', 'et',
+    'fa', 'fi', 'fr', 'gu', 'he', 'hi', 'hr', 'hu', 'id', 'it', 'ja', 'ka', 'kk', 'km',
+    'ko', 'lt', 'lv', 'mk', 'ml', 'mn', 'mr', 'ms', 'nb', 'nl', 'pl', 'pt', 'ro', 'ru',
+    'si', 'sk', 'sl', 'sr', 'sv', 'ta', 'te', 'th', 'tr', 'uk', 'ur', 'vi', 'zh-CN', 'zh-TW'
+  ].join(',');
+  const supportedTranslationLanguages = new Set(translationLanguages.split(','));
 
   const pageName = () => (window.location.pathname.split('/').pop() || 'index.html').split('?')[0];
+
+  const normalizeLanguage = (value) => {
+    const input = String(value || '').trim().toLowerCase().replace(/_/g, '-');
+    if (!input) {
+      return sourceLanguage;
+    }
+
+    if (input.startsWith('zh')) {
+      if (input.includes('tw') || input.includes('hk') || input.includes('mo')) {
+        return 'zh-TW';
+      }
+
+      return 'zh-CN';
+    }
+
+    if (input.startsWith('pt')) {
+      return 'pt';
+    }
+
+    if (input.startsWith('nb') || input.startsWith('no')) {
+      return 'nb';
+    }
+
+    const candidate = supportedTranslationLanguages.has(input) ? input : input.split('-')[0];
+    return supportedTranslationLanguages.has(candidate) ? candidate : sourceLanguage;
+  };
+
+  const detectBrowserLanguage = () => {
+    const preferredLanguages = Array.isArray(navigator.languages) && navigator.languages.length
+      ? navigator.languages
+      : [navigator.language || sourceLanguage];
+
+    for (const language of preferredLanguages) {
+      const normalized = normalizeLanguage(language);
+      if (normalized) {
+        return normalized;
+      }
+    }
+
+    return sourceLanguage;
+  };
+
+  const setDocumentLanguage = (language) => {
+    document.documentElement.lang = language;
+    document.documentElement.dir = rtlLanguages.has(language.split('-')[0]) ? 'rtl' : 'ltr';
+  };
+
+  const setTranslationCookie = (language) => {
+    if (language === sourceLanguage) {
+      document.cookie = 'googtrans=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax';
+      return;
+    }
+
+    document.cookie = `googtrans=/${sourceLanguage}/${language}; path=/; SameSite=Lax`;
+  };
+
+  const ensureTranslateHost = () => {
+    if (document.getElementById(translationHostId)) {
+      return;
+    }
+
+    const host = document.createElement('div');
+    host.id = translationHostId;
+    host.className = 'translate-host';
+    host.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(host);
+  };
+
+  const loadTranslationWidget = () => {
+    if (document.getElementById(translationScriptId)) {
+      return;
+    }
+
+    window.googleTranslateElementInit = () => {
+      if (!window.google?.translate?.TranslateElement) {
+        return;
+      }
+
+      new window.google.translate.TranslateElement(
+        {
+          pageLanguage: sourceLanguage,
+          autoDisplay: false,
+          includedLanguages: translationLanguages
+        },
+        translationHostId
+      );
+    };
+
+    const script = document.createElement('script');
+    script.id = translationScriptId;
+    script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+  };
+
+  const initLocalization = () => {
+    const language = detectBrowserLanguage();
+    setDocumentLanguage(language);
+    setTranslationCookie(language);
+    ensureTranslateHost();
+    loadTranslationWidget();
+  };
 
   const injectFragment = async (target, path) => {
     if (!target) {
@@ -120,6 +235,7 @@
     await injectFragment(headerTarget, headerPath);
     await injectFragment(footerTarget, footerPath);
 
+    initLocalization();
     setActiveNav();
     bindHeader();
     ensureFloatingWhatsapp();

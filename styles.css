@@ -26,6 +26,60 @@ html {
   scroll-behavior: smooth;
 }
 
+html[dir='rtl'] body {
+  direction: rtl;
+}
+
+html[dir='rtl'] .header-shell .nav-wrap,
+html[dir='rtl'] .hero-actions,
+html[dir='rtl'] .action-row,
+html[dir='rtl'] .footer-note,
+html[dir='rtl'] .card-meta,
+html[dir='rtl'] .listing-head,
+html[dir='rtl'] .listing-actions,
+html[dir='rtl'] .listing-toolbar,
+html[dir='rtl'] .feature-item,
+html[dir='rtl'] .price-item {
+  direction: rtl;
+}
+
+html[dir='rtl'] .header-shell .nav-wrap,
+html[dir='rtl'] .footer-note {
+  flex-direction: row-reverse;
+}
+
+.translate-host {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.goog-te-banner-frame,
+.skiptranslate iframe,
+iframe.goog-te-banner-frame,
+.goog-te-gadget,
+.goog-te-gadget-simple,
+.goog-te-gadget-icon,
+.goog-te-balloon-frame,
+.goog-te-ftab,
+.goog-te-menu-value,
+.goog-tooltip,
+.goog-te-spinner-pos {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+.skiptranslate {
+  display: none !important;
+}
+
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
