@@ -2,7 +2,7 @@
   const cacheBust = '20260419';
   const headerPath = 'global-header.html';
   const footerPath = 'global-footer.html';
-  const sourceLanguage = 'en';
+  const sourceLanguage = 'es';
   const translationHostId = 'google_translate_element';
   const translationScriptId = 'google-translate-script';
   const rtlLanguages = new Set(['ar', 'fa', 'he', 'ur']);
