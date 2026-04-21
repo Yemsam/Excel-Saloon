@@ -194,8 +194,8 @@
     const wrapper = document.createElement('div');
     wrapper.className = 'floating-whatsapp';
     wrapper.innerHTML = `
-      <a class="whatsapp-button" href="https://wa.me/31651080577" target="_blank" rel="noopener noreferrer" aria-label="Need an Appointment? Chat on WhatsApp">
-        <span class="whatsapp-tooltip">Need an Appointment?</span>
+      <a class="whatsapp-button" href="https://wa.me/31651080577" target="_blank" rel="noopener noreferrer" aria-label="¿Necesitas una cita? Chatea por WhatsApp">
+        <span class="whatsapp-tooltip">¿Necesitas una cita?</span>
         <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
           <path d="M16 5.5C10.2 5.5 5.5 9.95 5.5 15.44c0 1.97.62 3.8 1.7 5.34L6 26.5l5.92-1.53a10.8 10.8 0 0 0 4.08.79c5.8 0 10.5-4.45 10.5-9.94S21.8 5.5 16 5.5Z" stroke="#ffffff" stroke-width="1.6" stroke-linejoin="round"/>
           <path d="M13.4 11.8c-.2-.42-.4-.45-.58-.46h-.5c-.17 0-.44.06-.67.29-.23.23-.87.84-.87 2.06s.89 2.4 1.01 2.57c.12.17 1.69 2.61 4.08 3.56 1.99.79 2.4.63 2.83.59.43-.04 1.39-.57 1.59-1.13.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28-.23-.12-1.39-.68-1.6-.76-.21-.08-.36-.12-.5.12-.14.23-.55.76-.67.92-.12.17-.25.19-.48.06-.23-.12-.97-.36-1.85-1.17-.69-.62-1.16-1.39-1.3-1.63-.14-.23-.01-.36.11-.48.11-.11.23-.3.35-.45.12-.16.16-.27.24-.45.08-.17.04-.32-.02-.44-.06-.12-.5-1.3-.69-1.78Z" fill="#ffffff"/>
